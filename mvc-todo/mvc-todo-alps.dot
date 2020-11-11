@@ -1,0 +1,23 @@
+digraph application_state_diagram {
+    node [shape = box, style = "bold,filled"];
+
+    todoList [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td bgcolor="#dddddd">todoList<br />(id)<br />(title)<br />(completed)<br /></td></tr></table>>,shape=box URL="docs/semantic.todoList.html"]
+    todoItem [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td bgcolor="#dddddd">todoItem<br />(id)<br />(title)<br />(completed)<br /></td></tr></table>>,shape=box URL="docs/semantic.todoItem.html"]
+
+    home->todoList [label = "listAll (safe)" URL="docs/safe.listAll.html"];
+    home->related [label = "goRelated (safe)" URL="docs/safe.goRelated.html"];
+    related->home [label = "goHome (safe)" URL="docs/safe.goHome.html"];
+    related->todoList [label = "listAll (safe), listActive (safe), listCompleted (safe), remove (idempotent)" URL="docs/safe.listAll.html"];
+    related->todoItem [label = "read (safe), add (unsafe), edit (idempotent)" URL="docs/safe.read.html"];
+    todoList->todoItem [label = "read (safe), add (unsafe)" URL="docs/safe.read.html"];
+    todoList->todoList [label = "listAll (safe), listActive (safe), listCompleted (safe), goFirst (safe), goNext (safe), goPrevious (safe), goLast (safe)" URL="docs/safe.listAll.html"];
+    todoList->home [label = "goHome (safe)" URL="docs/safe.goHome.html"];
+    todoList->related [label = "goRelated (safe)" URL="docs/safe.goRelated.html"];
+    todoItem->todoList [label = "listAll (safe), remove (idempotent)" URL="docs/safe.listAll.html"];
+    todoItem->todoItem [label = "edit (idempotent), markCompleted (idempotent), clearCompleted (idempotent)" URL="docs/idempotent.edit.html"];
+    todoItem->related [label = "goRelated (safe)" URL="docs/safe.goRelated.html"];
+
+    home [URL="docs/semantic.home.html"]
+    related [URL="docs/semantic.related.html"]
+
+}

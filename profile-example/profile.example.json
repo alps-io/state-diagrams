@@ -1,0 +1,100 @@
+{
+  "$schema": "schema/alps.json",
+  "alps": {
+    "doc": {
+      "value": "ALPS profile example"
+    },
+    "descriptor": [
+      {
+        "id": "Index",
+        "type": "semantic",
+        "doc": {
+          "value": "Index Page"
+        },
+        "descriptor": [
+          {
+            "id": "start",
+            "type": "safe",
+            "rt": "#Blog"
+          }
+        ]
+      },
+      {
+        "id": "About",
+        "type": "semantic",
+        "descriptor": [
+          {
+            "id": "backToBlog",
+            "type": "safe",
+            "rt": "#Blog"
+          }
+        ]
+      },
+      {
+        "id": "Blog",
+        "type": "semantic",
+        "def": "https://schema.org/Blog",
+        "descriptor": [
+          {
+            "href": "#BlogPosting"
+          },
+          {
+            "id": "blogPosting",
+            "type": "safe",
+            "rt": "#BlogPosting",
+            "rel": "item",
+            "descriptor": [
+              {"href": "#id"}
+            ]
+          },
+          {
+            "id": "post",
+            "type": "unsafe",
+            "def": "http://activitystrea.ms/specs/json/1.0/#post-verb",
+            "descriptor": [
+              {"href": "#articleBody"}
+            ],
+            "rt": "#Blog"
+          },
+          {
+            "id": "about",
+            "type": "safe",
+            "rt": "#About"
+          }
+        ]
+      },
+      {
+        "id": "BlogPosting",
+        "type": "semantic",
+        "def": "https://schema.org/BlogPosting",
+        "descriptor": [
+          {
+            "id": "id",
+            "href": "#id"
+          },
+          {
+            "id": "articleBody",
+            "type": "semantic",
+            "def": "https://schema.org/articleBody"
+          },
+          {
+            "id": "dateCreated",
+            "type": "semantic",
+            "def": "https://schema.org/dateCreated"
+          },
+          {
+            "id": "blog",
+            "type": "safe",
+            "rt": "#Blog",
+            "rel": "collection"
+          }
+        ]
+      },
+      {
+        "id": "id",
+        "type": "semantic",
+        "def": "http://schema.org/identifier"
+      }
+    ]
+  }
+}
